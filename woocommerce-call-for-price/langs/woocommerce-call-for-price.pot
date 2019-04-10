@@ -1,0 +1,320 @@
+#: woocommerce-call-for-price.php:108
+msgid "Settings"
+msgstr ""
+
+#: woocommerce-call-for-price.php:110
+msgid "Unlock All"
+msgstr ""
+
+#: includes/class-wc-call-for-price.php:133
+#: includes/class-wc-call-for-price.php:378
+#: includes/admin/class-wc-call-for-price-settings-general.php:143
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:36
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:69
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:143
+#: includes/admin/class-wc-settings-call-for-price.php:23
+msgid "Call for Price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:24
+msgid "General"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:79
+msgid "Call for Price Options"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:84
+msgid "WooCommerce Call for Price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:85
+msgid "Enable plugin"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:86
+msgid ""
+"Create any custom price label for all WooCommerce products with empty price."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:88
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:101
+msgid "General Options"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:106
+msgid "Per product"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:107
+#: includes/admin/class-wc-call-for-price-settings-general.php:132
+#: includes/admin/class-wc-call-for-price-settings-general.php:180
+#: includes/admin/class-wc-call-for-price-settings-general.php:187
+#: includes/admin/class-wc-call-for-price-settings-general.php:199
+#: includes/admin/class-wc-call-for-price-settings-general.php:223
+#: includes/admin/class-wc-call-for-price-settings-general.php:280
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:55
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:125
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:135
+msgid "Enable"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:108
+msgid "This will add new meta box to each product's admin edit page."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:109
+#, php-format
+msgid "You will need %s plugin to enable \"Per Product\" option."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:111
+#: includes/admin/class-wc-call-for-price-settings-general.php:141
+#: includes/admin/class-wc-call-for-price-settings-general.php:191
+msgid "Call for Price for WooCommerce Pro"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:125
+msgid "Button Options"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:130
+#: includes/admin/class-wc-call-for-price-settings-general.php:138
+msgid "Button text"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:131
+msgid ""
+"Changes \"Read more\" button text for \"Call for Price\" products on "
+"archives."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:139
+#, php-format
+msgid "You will need %s plugin to change this text."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:148
+msgid "Hide button"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:149
+msgid "Hides \"Read more\" button for \"Call for Price\" products on archives."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:150
+#: includes/admin/class-wc-call-for-price-settings-general.php:158
+#: includes/admin/class-wc-call-for-price-settings-general.php:260
+#: includes/admin/class-wc-call-for-price-settings-general.php:273
+msgid "Hide"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:156
+msgid "Variations \"add to cart\" button"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:157
+msgid "Hides disabled \"add to cart\" button for variations with empty prices."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:172
+msgid "Force Products \"Call for Price\""
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:173
+msgid ""
+"By default only products with empty price display \"Call for Price\" labels, "
+"however you can additionally force products with not empty price to display "
+"\"Call for Price\" label also."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:178
+msgid "All products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:179
+msgid "Makes all your shop's products \"Call for Price\"."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:186
+msgid "\"Out of stock\" products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:188
+msgid ""
+"Makes \"Call for Price\" for all products that can not be purchased (not "
+"\"in stock\" or \"on backorder\" stock statuses)."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:189
+#, php-format
+msgid "You will need %s plugin to enable this option."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:198
+msgid "Per product taxonomy"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:200
+msgid ""
+"Makes \"Call for Price\" for all products from selected product categories "
+"and/or product tags."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:206
+msgid "Product categories"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:214
+msgid "Product tags"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:222
+msgid "By product price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:224
+msgid "Makes \"Call for Price\" for all products in selected price range."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:230
+msgid "Min price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:231
+#: includes/admin/class-wc-call-for-price-settings-general.php:239
+msgid "Ignored, if set set to zero."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:238
+msgid "Max price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:253
+msgid "Advanced Options"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:258
+msgid "Sale tag"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:259
+msgid "Hides sale tag for products with empty prices."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:266
+msgid "Main variable price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:267
+msgid "Hides main variable price on single product page for all products."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:272
+msgid "Do not hide"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:274
+msgid "Hide with CSS"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:278
+msgid "Force variation price"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-general.php:279
+msgid "Forces variations prices on single product page for all products."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:56
+msgid ""
+"This will only enable the label - you still have to set product price to "
+"empty, for label to appear on frontend."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:61
+msgid "No"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:62
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-per-product.php:66
+msgid "Text (all views)"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:25
+msgid "Simple Products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:26
+msgid "Variable Products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:27
+msgid "Grouped Products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:28
+msgid "External Products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:98
+msgid "Single product page"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:99
+msgid "Related products"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:100
+msgid "Homepage"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:101
+msgid "Pages (e.g. shortcodes)"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:102
+msgid "Archives"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:105
+msgid "Variations"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:115
+#, php-format
+msgid ""
+"You will need <a target=\"_blank\" href=\"%s\">Call for Price for "
+"WooCommerce Pro</a> plugin to change default texts."
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:124
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/admin/class-wc-call-for-price-settings-product-types.php:141
+msgid "This sets the html to output on empty price. Leave blank to disable."
+msgstr ""
+
+#: includes/admin/class-wc-settings-call-for-price.php:37
+msgid "Reset Settings"
+msgstr ""
+
+#: includes/admin/class-wc-settings-call-for-price.php:42
+msgid "Reset section settings"
+msgstr ""
+
+#: includes/admin/class-wc-settings-call-for-price.php:43
+msgid "Reset"
+msgstr ""
+
+#: includes/admin/class-wc-settings-call-for-price.php:95
+#, php-format
+msgid "Call for Price for WooCommerce - version %s"
+msgstr ""
