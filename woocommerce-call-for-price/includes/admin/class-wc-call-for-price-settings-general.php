@@ -84,7 +84,7 @@ class Alg_WC_Call_For_Price_Settings_General {
 				'title'     => __( 'WooCommerce Call for Price', 'woocommerce-call-for-price' ),
 				'desc'      => '<strong>' . __( 'Enable plugin', 'woocommerce-call-for-price' ) . '</strong>',
 				'desc_tip'  => __( 'Create any custom price label for all WooCommerce products with empty price.', 'woocommerce-call-for-price' ) .
-					'<p><a class="button" style="font-style: italic;" href="https://wpfactory.com/item/woocommerce-call-for-price-plugin/" target="_blank">' .
+					'<p><a class="button" style="font-style: italic;" href="https://www.tychesoftwares.com/docs/docs/call-for-price-for-woocommerce/" target="_blank">' .
 						__( 'Documentation', 'woocommerce-call-for-price' ) . '</a></p>',
 				'id'        => 'alg_wc_call_for_price_enabled',
 				'default'   => 'yes',
@@ -107,7 +107,7 @@ class Alg_WC_Call_For_Price_Settings_General {
 				'desc'      => __( 'Enable', 'woocommerce-call-for-price' ),
 				'desc_tip'  => __( 'This will add new meta box to each product\'s admin edit page.', 'woocommerce-call-for-price' ) . ' ' .
 					apply_filters( 'alg_call_for_price', '<br>' . sprintf( __( 'You will need %s plugin to enable "Per Product" option.', 'woocommerce-call-for-price' ),
-						'<a target="_blank" href="https://wpfactory.com/item/woocommerce-call-for-price-plugin/">' .
+						'<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/">' .
 							__( 'Call for Price for WooCommerce Pro', 'woocommerce-call-for-price' ) . '</a>' ), 'settings' ),
 				'id'        => 'alg_wc_call_for_price_per_product_enabled',
 				'default'   => 'no',
@@ -137,7 +137,7 @@ class Alg_WC_Call_For_Price_Settings_General {
 			array(
 				'desc'      => __( 'Button text', 'woocommerce-call-for-price' ) .
 					apply_filters( 'alg_call_for_price', '<br>' . sprintf( __( 'You will need %s plugin to change this text.', 'woocommerce-call-for-price' ),
-						'<a target="_blank" href="https://wpfactory.com/item/woocommerce-call-for-price-plugin/">' .
+						'<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/">' .
 							__( 'Call for Price for WooCommerce Pro', 'woocommerce-call-for-price' ) . '</a>' ), 'settings' ),
 				'id'        => 'alg_call_for_price_button_text',
 				'default'   => __( 'Call for Price', 'woocommerce-call-for-price' ),
@@ -187,7 +187,7 @@ class Alg_WC_Call_For_Price_Settings_General {
 				'desc'      => __( 'Enable', 'woocommerce-call-for-price' ),
 				'desc_tip'  => __( 'Makes "Call for Price" for all products that can not be purchased (not "in stock" or "on backorder" stock statuses).', 'woocommerce-call-for-price' ) .
 					apply_filters( 'alg_call_for_price', '<br>' . sprintf( __( 'You will need %s plugin to enable this option.', 'woocommerce-call-for-price' ),
-						'<a target="_blank" href="https://wpfactory.com/item/woocommerce-call-for-price-plugin/">' .
+						'<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/">' .
 							__( 'Call for Price for WooCommerce Pro', 'woocommerce-call-for-price' ) . '</a>' ), 'settings' ),
 				'id'        => 'alg_call_for_price_make_out_of_stock_empty_price',
 				'default'   => 'no',
