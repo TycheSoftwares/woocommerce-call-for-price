@@ -2,8 +2,8 @@
 Contributors: tychesoftwares
 Tags: woocommerce, woo commerce, call for price
 Requires at least: 4.4
-Tested up to: 5.0
-Stable tag: 3.2.5
+Tested up to: 5.1.1
+Stable tag: 3.2.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,6 +61,9 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 1. Empty price replaced by "Call for Price".
 
 == Changelog ==
+
+= 3.2.6 - 12/04/2019 = 
+* Fix - Options were not getting deleted from the database when the plugin is being uninstalled. This is fixed now. 
 
 = 3.2.5 - 16/11/2018 =
 * Author name and URL's updated due to handover of the plugins.
