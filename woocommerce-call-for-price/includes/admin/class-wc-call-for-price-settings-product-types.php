@@ -113,7 +113,7 @@ class Alg_WC_Call_For_Price_Settings_Product_Types {
 					'alg_call_for_price',
 					sprintf(
 						__( 'You will need <a target="_blank" href="%s">Call for Price for WooCommerce Pro</a> plugin to change default texts.', 'woocommerce-call-for-price' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/'
+						'https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=cfpupgradetopro&utm_medium=link&utm_campaign=CallForPriceLite'
 					),
 					'settings',
 					$product_type,
