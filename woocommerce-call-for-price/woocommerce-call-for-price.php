@@ -107,7 +107,7 @@ final class Alg_Woocommerce_Call_For_Price {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_call_for_price' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 		if ( 'woocommerce-call-for-price.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/">' . __( 'Unlock All', 'woocommerce-call-for-price' ) . '</a>';
+			$custom_links[] = '<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=cfpupgradetopro&utm_medium=unlockall&utm_campaign=CallForPriceLite">' . __( 'Unlock All', 'woocommerce-call-for-price' ) . '</a>';
 		}
 		return array_merge( $custom_links, $links );
 	}
