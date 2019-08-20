@@ -187,7 +187,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					$product_terms = get_the_terms( $product_id, $taxonomy );
 					if ( ! empty( $product_terms ) ) {
 						foreach ( $product_terms as $product_term ) {
-							if ( in_array( $product_term->term_id, $term_ids, true ) ) {
+							if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
 								return '';
 							}
 						}
