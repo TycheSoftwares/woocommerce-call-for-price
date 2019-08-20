@@ -107,7 +107,7 @@ if ( ! class_exists( 'Alg_WC_Settings_Call_For_Price' ) ) :
 				echo sprintf(
 					/* translators: %s: search term */
 					esc_html__( 'Call for Price for WooCommerce - version %s', 'woocommerce-call-for-price' ),
-					get_option( 'alg_wc_call_for_price_version', '' ) // phpcs:ignore
+					esc_html( get_option( 'alg_wc_call_for_price_version', '' ) )
 				);
 				echo '</p>';
 			}

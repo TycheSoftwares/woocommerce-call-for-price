@@ -192,7 +192,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Per_Product' ) ) :
 		 * @since   3.1.1
 		 */
 		public function save_call_for_price_meta_box( $post_id ) {
-			if ( ! isset( $_POST['alg_wc_call_for_price_meta_box_save_post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( ! isset( $_POST['alg_wc_call_for_price_meta_box_save_post'] ) ) {
 				return;
 			}
 			foreach ( $this->get_meta_box_options() as $option ) {
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Per_Product' ) ) :
 				if ( ! isset( $option['enabled'] ) || 'yes' === $option['enabled'] ) {
 					$option_value = '';
 					if ( isset( $option['name'] ) ) {
-						$option_value = ( isset( $_POST[ $option['name'] ] ) ? sanitize_text_field( wp_unslash( $_POST[ $option['name'] ] ) ) : $option['default'] ); // phpcs:ignore WordPress.Security.NonceVerification
+						$option_value = ( isset( $_POST[ $option['name'] ] ) ? sanitize_text_field( wp_unslash( $_POST[ $option['name'] ] ) ) : $option['default'] );
 					}
 					$_post_id   = ( isset( $option['product_id'] ) ? $option['product_id'] : $post_id );
 					$_meta_name = ( isset( $option['meta_name'] ) ? $option['meta_name'] : '_' . $option['name'] );

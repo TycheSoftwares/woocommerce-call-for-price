@@ -71,17 +71,17 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 			?><tr valign="top">
 			<th scope="row" class="titledesc">
 				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-				<?php echo $tooltip_html; // phpcs:ignore ?>
+				<?php echo wp_kses_post( $tooltip_html ); ?>
 			</th>
-			<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ); // phpcs:ignore ?>">
-				<?php echo $description; // phpcs:ignore ?>
+			<td class="forminp forminp-<?php echo esc_attr( $value['type'] ); ?>">
+				<?php echo wp_kses_post( $description ); ?>
 				<textarea
 					name="<?php echo esc_attr( $value['id'] ); ?>"
 					id="<?php echo esc_attr( $value['id'] ); ?>"
 					style="<?php echo esc_attr( $value['css'] ); ?>"
 					class="<?php echo esc_attr( $value['class'] ); ?>"
 					placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-					<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore ?>
+					<?php echo implode( ' ', array_map( 'esc_attr', $custom_attributes ) ); ?>
 					><?php echo esc_textarea( $option_value ); ?></textarea>
 			</td>
 		</tr>
@@ -186,7 +186,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 		 * @since   3.0.0
 		 */
 		public function get_settings() {
-			return ( isset( $_GET['section'] ) ) ? $this->generate_settings_section( sanitize_text_field( wp_unslash( $_GET['section'] ) ) ) : array(); // phpcs:ignore WordPress.Security.NonceVerification
+			return ( isset( $_GET['section'] ) ) ? $this->generate_settings_section( sanitize_text_field( wp_unslash( $_GET['section'] ) ) ) : array();
 		}
 
 	}
