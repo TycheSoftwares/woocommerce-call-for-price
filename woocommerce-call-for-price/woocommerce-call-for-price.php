@@ -3,7 +3,7 @@
  * Plugin Name: Call for Price for WooCommerce
  * Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/
  * Description: Plugin extends WooCommerce by outputting "Call for Price" when price field for product is left empty.
- * Version: 3.2.6
+ * Version: 3.2.7
  * Author: Tyche Softwares
  * Author URI: https://www.tychesoftwares.com/
  * Text Domain: woocommerce-call-for-price
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 		 * @var   string
 		 * @since 3.0.0
 		 */
-		public $version = '3.2.6';
+		public $version = '3.2.7';
 
 		/**
 		 * Instance Variable
