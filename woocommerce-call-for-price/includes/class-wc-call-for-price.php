@@ -261,8 +261,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.2.1
 		 */
 		public function make_empty_price_by_product_price( $price, $_product ) {
-			$min_price = get_option( 'alg_call_for_price_make_empty_price_min_price', 0 );
-			$max_price = get_option( 'alg_call_for_price_make_empty_price_max_price', 0 );
+			$min_price                     = get_option( 'alg_call_for_price_make_empty_price_min_price', 0 );
+			$max_price                     = get_option( 'alg_call_for_price_make_empty_price_max_price', 0 );
 			$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
 
 			if ( 0 === $min_price && 0 === $max_price ) {
