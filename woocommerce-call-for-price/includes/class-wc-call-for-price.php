@@ -62,6 +62,12 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 				if ( 'yes' === get_option( 'alg_call_for_price_make_empty_price_per_taxonomy', 'no' ) ) {
 					$this->hook_price_filters( 'make_empty_price_per_taxonomy' );
 				}
+				// Call for price text for the products with zero price.
+				if ( 'yes' === get_option( 'alg_call_for_price_enable_cfp_for_zero_price', 'no' ) ) {
+					add_filter( 'woocommerce_get_price_html', array( $this, 'alg_wc_cfp_handle_cfp_text' ), 10, 2 );
+					// Hide ATC button on product page when price is set 0.
+					add_filter( 'woocommerce_is_purchasable', array( $this, 'alg_call_for_price_to_remove_atc_button' ), 10, 2 );
+				}
 				// "Call for Price" by product price.
 				if ( 'yes' === get_option( 'alg_call_for_price_make_empty_price_by_product_price', 'no' ) ) {
 					$this->hook_price_filters( 'make_empty_price_by_product_price' );
@@ -103,6 +109,95 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		}
 
 		/**
+		 * Get the value of a call for price for zero price products setting.
+		 *
+		 * @return string The setting value of Call for Price for zero products.
+		 * @since 3.3.0
+		 */
+		public function alg_wc_cfp_setting_for_zero_priced_product() {
+			return get_option( 'alg_call_for_price_enable_cfp_for_zero_price', 'no' );
+		}
+
+		/**
+		 * To show the CFP text for zero price products.
+		 *
+		 * @param string $price_html Price Html.
+		 * @param object $_product Product.
+		 * @version 3.3.0
+		 * @since 3.3.0
+		 */
+		public function alg_wc_cfp_handle_cfp_text( $price_html, $_product ) {
+			$label = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
+			if ( '0' === $_product->get_price() ) {
+				$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
+				if ( 'no' === $is_cfp_for_zero_price_enabled ) {
+					return $price_html;
+				} else {
+					$status = apply_filters( 'alg_call_for_price_for_zero_price_products', false, $_product->get_id() );
+					if ( true === $status ) {
+						return $price_html;
+					} else {
+						return do_shortcode( $label );
+					}
+				}
+			}
+			return $price_html;
+		}
+
+		/**
+		 * Function to hide the ATC button on products page when price is set to 0.
+		 *
+		 * @param bool   $is_purchasable Product is purchasable or not.
+		 * @param object $product Product object.
+		 */
+		public function alg_call_for_price_to_remove_atc_button( $is_purchasable, $product ) {
+			$product_price = $product->get_price();
+			if ( '0' === $product_price ) {
+				return false;
+			}
+			return $is_purchasable;
+		}
+
+		/**
+		 * Returns the stock setting for empty price products.
+		 *
+		 * @return string The stock setting value for empty priced products.
+		 * @since 3.3.0
+		 */
+		public function alg_wc_cfp_stock_setting_for_empty_price_product() {
+			return get_option( 'alg_call_for_price_enable_stock_for_empty_price', 'no' );
+		}
+
+		/**
+		 * Appends a stock quantity/availability with empty price products.
+		 *
+		 * @param string $short_desc The Product short description.
+		 * @return string The Revised short description with stock quantity.
+		 *
+		 * @since 3.3.0
+		 */
+		public function alg_cfp_empty_price_products_stock_management( $short_desc ) {
+
+			if ( is_product() ) {
+
+				global $product;
+				$product_id    = $product->get_id();
+				$product_price = $product->get_price();
+				$product_type  = $product->get_type();
+
+				switch ( $product->get_type() ) {
+					case 'simple':
+						if ( ( ( '' === $product_price || ( ( '0' === $product_price ) && ( 'yes' === get_option( 'alg_call_for_price_enable_cfp_for_zero_price', 'no' ) ) ) ) && ( 'yes' === $this->alg_wc_cfp_stock_setting_for_empty_price_product() ) ) ) {
+							$short_desc .= wc_get_stock_html( $product );
+						}
+						break;
+				}
+			}
+			return $short_desc;
+
+		}
+
+		/**
 		 * Hide_main_variable_price_on_single_product_page_with_css.
 		 *
 		 * @version 3.2.3
@@ -121,7 +216,13 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.2.2
 		 */
 		public function remove_button_on_archives( $link, $_product ) {
-			return ( '' === $_product->get_price() ? '' : $link );
+			$product_price      = $_product->get_price();
+			$cfp_for_zero_price = get_option( 'alg_call_for_price_enable_cfp_for_zero_price', 'no' );
+			if ( '' === $product_price || ( '0' === $product_price && 'yes' === $cfp_for_zero_price ) ) {
+				return '';
+			} else {
+				return $link;
+			}
 		}
 
 		/**
@@ -162,13 +263,32 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		public function make_empty_price_by_product_price( $price, $_product ) {
 			$min_price = get_option( 'alg_call_for_price_make_empty_price_min_price', 0 );
 			$max_price = get_option( 'alg_call_for_price_make_empty_price_max_price', 0 );
+			$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
+
 			if ( 0 === $min_price && 0 === $max_price ) {
 				return $price;
 			}
 			if ( 0 === $max_price ) {
 				$max_price = PHP_INT_MAX;
 			}
-			return ( $price >= $min_price && $price <= $max_price ? '' : $price );
+			if ( $price >= $min_price && $price <= $max_price ) {
+				return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
+			} else {
+				if ( '0' === $price ) {
+					if ( 'no' === $is_cfp_for_zero_price_enabled ) {
+						return $price;
+					} else {
+						$status = apply_filters( 'alg_call_for_price_for_zero_price_products', false, $_product->get_id() );
+						if ( true === $status ) {
+							return $price;
+						} else {
+							return '';
+						}
+					}
+				} else {
+					return $price;
+				}
+			}
 		}
 
 		/**
@@ -188,7 +308,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					if ( ! empty( $product_terms ) ) {
 						foreach ( $product_terms as $product_term ) {
 							if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
-								return '';
+								return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
 							}
 						}
 					}
@@ -206,7 +326,11 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.2.0
 		 */
 		public function make_empty_price_out_of_stock( $price, $_product ) {
-			return ( ! $_product->is_in_stock() ? '' : $price );
+			if ( ! $_product->is_in_stock() ) {
+				return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
+			} else {
+				return $price;
+			}
 		}
 
 		/**
@@ -256,6 +380,37 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		}
 
 		/**
+		 * Returns the product price after being set to zero or empty.
+		 *
+		 * @param string $price The product price.
+		 * @param object $_product  The Product object.
+		 *
+		 * @since 3.3.0
+		 * @return The price as per different conditons.
+		 */
+		public function fetch_product_price_if_zero_or_empty( $price, $_product ) {
+			$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
+			if ( 'no' === $is_cfp_for_zero_price_enabled ) {
+				if ( '0' === $price ) {
+					return $price;
+				} else {
+					return '';
+				}
+			} else {
+				if ( '0' === $price ) {
+					$status = apply_filters( 'alg_call_for_price_for_zero_price_products', false, $_product->get_id() );
+					if ( true === $status ) {
+						return $price;
+					} else {
+						return '';
+					}
+				} else {
+					return '';
+				}
+			}
+		}
+
+		/**
 		 * Make_empty_price.
 		 *
 		 * @param float  $price Price.
@@ -264,7 +419,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.0.3
 		 */
 		public function make_empty_price( $price, $_product ) {
-			return '';
+			return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
 		}
 
 		/**
@@ -310,6 +465,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 			add_filter( 'woocommerce_variable_empty_price_html', array( $this, 'on_empty_price' ), PHP_INT_MAX, 2 );
 			add_filter( 'woocommerce_grouped_empty_price_html', array( $this, 'on_empty_price' ), PHP_INT_MAX, 2 );
 			add_filter( 'woocommerce_variation_empty_price_html', array( $this, 'on_empty_price' ), PHP_INT_MAX, 2 ); // Only in < WC3.
+
+			add_filter( 'woocommerce_short_description', array( $this, 'alg_cfp_empty_price_products_stock_management' ) );
 
 			require_once 'class-wc-call-for-price-compatibility.php';
 		}

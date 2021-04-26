@@ -133,6 +133,20 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 					'custom_attributes' => apply_filters( 'alg_call_for_price', array( 'disabled' => 'disabled' ), 'settings' ),
 				),
 				array(
+					'title'   => __( 'Enable Call for Price for zero(0) price products.', 'woocommerce-call-for-price' ),
+					'desc'    => __( 'Check the box to display call for price text for products whose prices set to 0 as well.', 'woocommerce-call-for-price' ),
+					'id'      => 'alg_call_for_price_enable_cfp_for_zero_price',
+					'default' => 'no',
+					'type'    => 'checkbox',
+				),
+				array(
+					'title'   => __( 'Show stock status for empty priced products.', 'woocommerce-call-for-price' ),
+					'desc'    => __( 'Check the box to display stock status/quantity for empty priced products.', 'woocommerce-call-for-price' ),
+					'id'      => 'alg_call_for_price_enable_stock_for_empty_price',
+					'default' => 'no',
+					'type'    => 'checkbox',
+				),
+				array(
 					'type' => 'sectionend',
 					'id'   => 'alg_wc_call_for_price_general_options',
 				),
