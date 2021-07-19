@@ -9,7 +9,7 @@
  * Text Domain: woocommerce-call-for-price
  * Domain Path: /langs
  * Copyright: � 2021 Tyche Softwares
- * WC tested up to: 5.2
+ * WC tested up to: 5.5
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
