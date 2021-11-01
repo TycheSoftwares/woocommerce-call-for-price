@@ -127,7 +127,78 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since 3.3.0
 		 */
 		public function alg_wc_cfp_handle_cfp_text( $price_html, $_product ) {
-			$label = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
+			// Get product type, product id and current filter.
+			$current_filter = current_filter();
+			if ( $this->is_wc_below_3_0_0 ) {
+				$_product_id  = $_product->id;
+				$product_type = 'simple'; // default.
+				switch ( $current_filter ) {
+					case 'woocommerce_variable_empty_price_html':
+					case 'woocommerce_variation_empty_price_html':
+						$product_type = 'variable';
+						break;
+					case 'woocommerce_grouped_empty_price_html':
+						$product_type = 'grouped';
+						break;
+					default: // 'woocommerce_empty_price_html'
+						$product_type = ( $_product->is_type( 'external' ) ) ? 'external' : 'simple';
+				}
+			} else {
+				$_product_id = ( $_product->is_type( 'variation' ) ) ? $_product->get_parent_id() : $_product->get_id();
+				if ( $_product->is_type( 'variation' ) ) {
+					$current_filter = 'woocommerce_variation_empty_price_html';
+					$product_type   = 'variable';
+				} else {
+					$product_type = $_product->get_type();
+				}
+			}
+
+			// Check if enabled for current product type.
+			if ( 'per_product' !== $product_type && 'yes' !== get_option( 'alg_wc_call_for_price_' . $product_type . '_enabled', 'yes' ) ) {
+				return $price;
+			}
+
+			// Get view.
+			if ( 'per_product' === $product_type ) {
+				$view = 'all_views';
+			} else {
+				$view = 'single'; // default.
+				if ( 'woocommerce_variation_empty_price_html' === $current_filter ) {
+					$view = 'variation';
+				} elseif ( is_single( $_product_id ) ) {
+					$view = 'single';
+				} elseif ( is_single() ) {
+					$view = 'related';
+				} elseif ( is_front_page() ) {
+					$view = 'home';
+				} elseif ( is_page() ) {
+					$view = 'page';
+				} elseif ( is_archive() ) {
+					$view = 'archive';
+				}
+
+				// Check if enabled for current view.
+				if ( 'yes' !== get_option( 'alg_wc_call_for_price_' . $product_type . '_' . $view . '_enabled', 'yes' ) ) {
+					return $price;
+				}
+			}
+			if ( 'single' === $view || 'variation' === $view ) {
+				// Label for product page.
+				$label = get_option(
+					'alg_wc_call_for_price_text_' . $product_type . '_' . $view,
+					'<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>'
+				);
+			} else {
+				// Apply the label.
+				$label = apply_filters(
+					'alg_call_for_price',
+					'<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>',
+					'value',
+					$product_type,
+					$view,
+					array( 'product_id' => $_product_id )
+				);
+			}
 			if ( '0' === $_product->get_price() ) {
 				$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
 				if ( 'no' === $is_cfp_for_zero_price_enabled ) {
@@ -505,11 +576,10 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @version 3.2.0
 		 */
 		public function on_empty_price( $price, $_product ) {
-
 			// Get product type, product id and current filter.
 			$current_filter = current_filter();
 			if ( $this->is_wc_below_3_0_0 ) {
-				$_product_id = $_product->id;
+				$_product_id  = $_product->id;
 				$product_type = 'simple'; // default.
 				switch ( $current_filter ) {
 					case 'woocommerce_variable_empty_price_html':
