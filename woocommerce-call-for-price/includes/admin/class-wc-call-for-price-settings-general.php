@@ -167,20 +167,10 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 					'type'     => 'checkbox',
 				),
 				array(
-					'desc'              => __( 'Button text', 'woocommerce-call-for-price' ) .
-					apply_filters(
-						'alg_call_for_price',
-						'<br>' . sprintf( /* translators: %s: Link to pro version */
-							__( 'You will need %s plugin to change this text.', 'woocommerce-call-for-price' ),
-							'<a target="_blank" href="https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=cfpupgradetopro&utm_medium=link&utm_campaign=CallForPriceLite">' .
-							__( 'Call for Price for WooCommerce Pro', 'woocommerce-call-for-price' ) . '</a>'
-						),
-						'settings'
-					),
-					'id'                => 'alg_call_for_price_button_text',
-					'default'           => __( 'Call for Price', 'woocommerce-call-for-price' ),
-					'type'              => 'text',
-					'custom_attributes' => apply_filters( 'alg_call_for_price', array( 'readonly' => 'readonly' ), 'settings' ),
+					'desc'    => __( 'Button text', 'woocommerce-call-for-price' ),
+					'id'      => 'alg_call_for_price_button_text',
+					'default' => __( 'Call for Price', 'woocommerce-call-for-price' ),
+					'type'    => 'text',
 				),
 				array(
 					'title'    => __( 'Hide button', 'woocommerce-call-for-price' ),

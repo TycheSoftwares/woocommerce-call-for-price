@@ -129,7 +129,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 						'alg_call_for_price',
 						sprintf(
 							/* translators: %s: Link to pro version */
-							__( 'You will need <a target="_blank" href="%s">Call for Price for WooCommerce Pro</a> plugin to change default texts.', 'woocommerce-call-for-price' ),
+							__( 'You will need <a target="_blank" href="%s">Call for Price for WooCommerce Pro</a> plugin to change default texts except for single product page texts.', 'woocommerce-call-for-price' ),
 							'https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=cfpupgradetopro&utm_medium=link&utm_campaign=CallForPriceLite'
 						),
 						'settings',
@@ -162,7 +162,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 							'default'           => '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>',
 							'type'              => 'alg_wc_call_for_price_textarea',
 							'css'               => 'width:100%',
-							'custom_attributes' => apply_filters( 'alg_call_for_price', array( 'readonly' => 'readonly' ), 'settings', $product_type, $view ),
+							'custom_attributes' => 'single' !== $view ? apply_filters( 'alg_call_for_price', array( 'readonly' => 'readonly' ), 'settings', $product_type, $view ) : '',
 						),
 					)
 				);
