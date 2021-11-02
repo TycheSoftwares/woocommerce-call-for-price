@@ -106,6 +106,10 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 
 == Changelog ==
 
+= 3.3.1 - 02/11/2021 =
+* Enhancement - Able to change the Call for Price text coming on the products page from the general settings.
+* Enhancement - Able to change the text for Read more button coming on the Shop page for the products having null or 0 prices.
+
 = 3.3.0 - 27/04/2021 =
 * Enhancement - Added an option under global setting to also show Call for price text for zero priced products in addition to empty priced products.
 * Enhancement - Added a setting to show the stock status for zero priced products.
