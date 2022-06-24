@@ -22,18 +22,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Check if WooCommerce is active.
+$plugin_name = 'woocommerce/woocommerce.php';
 if (
 	! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ), true ) &&
-	! ( is_multisite() && array_key_exists( $plugin, get_site_option( 'active_sitewide_plugins', array() ) ) )
+	! ( is_multisite() && array_key_exists( $plugin_name, get_site_option( 'active_sitewide_plugins', array() ) ) )
 ) {
 	return;
 }
 
 if ( 'woocommerce-call-for-price.php' === basename( __FILE__ ) ) {
 	// Check if Pro is active, if so then return.
+	$plugin_name = 'woocommerce-call-for-price-pro/woocommerce-call-for-price-pro.php';
 	if (
 		in_array( 'woocommerce-call-for-price-pro/woocommerce-call-for-price-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ), true ) ||
-		( is_multisite() && array_key_exists( $plugin, get_site_option( 'active_sitewide_plugins', array() ) ) )
+		( is_multisite() && array_key_exists( $plugin_name, get_site_option( 'active_sitewide_plugins', array() ) ) )
 	) {
 		return;
 	}
