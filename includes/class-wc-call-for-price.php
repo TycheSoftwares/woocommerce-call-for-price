@@ -251,7 +251,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 
 			if ( is_product() ) {
 
-				global $product;
+				global $post;
+				$product       = wc_get_product( $post->ID );
 				$product_id    = $product->get_id();
 				$product_price = $product->get_price();
 				$product_type  = $product->get_type();
