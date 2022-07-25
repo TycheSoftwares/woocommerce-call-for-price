@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, call for price, request a quote
 Requires at least: 4.4
-Tested up to: 5.8
+Tested up to: 6.0.1
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -105,6 +105,11 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 1. Empty price replaced by "Call for Price".
 
 == Changelog ==
+
+= 3.4.0 - 26/07/2022 =
+* Fix - An error is coming on the variable product with the WooCommerce Stripe Gateway plugin as active.
+* Fix - PHP warnings errors in the log.
+
 
 = 3.3.1 - 02/11/2021 =
 * Enhancement - Able to change the Call for Price text coming on the products page from the general settings.
