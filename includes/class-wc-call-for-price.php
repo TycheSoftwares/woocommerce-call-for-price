@@ -380,7 +380,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					if ( ! empty( $product_terms ) ) {
 						foreach ( $product_terms as $product_term ) {
 							if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
-								return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
+								return '';
 							}
 						}
 					}
