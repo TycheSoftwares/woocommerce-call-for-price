@@ -20,6 +20,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
 
 // Check if WooCommerce is active.
 $plugin_name = 'woocommerce/woocommerce.php';
@@ -99,6 +100,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 			if ( is_admin() ) {
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+				add_action( 'before_woocommerce_init', array( &$this, 'cfp_lite_custom_order_tables_compatibility' ), 999 );
 			}
 		}
 
@@ -194,6 +196,18 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 		 */
 		public function plugin_path() {
 			return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		}
+		/**
+		 * Sets the compatibility with Woocommerce HPOS.
+		 *
+		 * @since 3.6.0
+		 */
+		public function cfp_lite_custom_order_tables_compatibility() {
+
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'woocommerce-call-for-price/woocommerce-call-for-price.php', true );
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'orders_cache', 'woocommerce-call-for-price/woocommerce-call-for-price.php', true );
+			}
 		}
 	}
 
