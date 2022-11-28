@@ -106,6 +106,10 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 
 == Changelog ==
 
+
+= 3.5.0 - 29/11/2022 =
+* Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
+
 = 3.4.0 - 26/07/2022 =
 * Fix - An error is coming on the variable product with the WooCommerce Stripe Gateway plugin as active.
 * Fix - PHP warnings errors in the log.
