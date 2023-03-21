@@ -179,7 +179,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 
 				// Check if enabled for current view.
 				if ( 'yes' !== get_option( 'alg_wc_call_for_price_' . $product_type . '_' . $view . '_enabled', 'yes' ) ) {
-					return $price;
+					return $price_html;
 				}
 			}
 			if ( 'single' === $view || 'variation' === $view ) {
