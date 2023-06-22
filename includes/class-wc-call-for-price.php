@@ -30,8 +30,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 */
 		public function __construct() {
 			if ( 'yes' === get_option( 'alg_wc_call_for_price_cart_enabled', 'no' ) ) {
-				add_filter( 'woocommerce_get_price_html', array( $this, 'call_for_price_on_product_page'), 10 , 3 ) ;
-				add_filter( 'woocommerce_cart_item_price', array( $this, 'call_for_price_on_cart_page'), 10 , 3 );
+				add_filter( 'woocommerce_get_price_html', array( $this, 'call_for_price_on_product_page' ), 10 , 3 );
+				add_filter( 'woocommerce_cart_item_price', array( $this, 'call_for_price_on_cart_page' ), 10 , 3 );
 			}
 			if ( 'yes' === get_option( 'alg_wc_call_for_price_enabled', 'yes' ) ) {
 				// Class properties.
@@ -102,21 +102,30 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		}
 
 		/**
-		 * 	Display call for price on the cart page if product price is 0 or empty (In price).
+		 * Display call for price on the cart page if product price is 0 or empty (In price).
+		 * 
+		 * @param object $product Product.
+		 * @param object $price Price.
+		 * @since 3.2.3
 		 */
 		public function call_for_price_on_product_page( $price, $product ) {
 			$product_price = $product->get_price();
-			if ( $product_price == 0 ) { 
+			if ( 0 === $product_price ) {
 				$price = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
 			}
 			return $price;
 		}
 
 		/**
-		 * 	Display call for price on the cart page if product price is 0 or empty (In price).
+		 * Display call for price on the cart page if product price is 0 or empty (In price).
+		 * 
+		 * @param object $cart_item_key Object of Cart items Key.
+		 * @param object $cart_item Object of Cart items.
+		 * @param object $price  Price.
+		 * @since 3.2.3
 		 */
-		public function call_for_price_on_cart_page(  $price, $cart_item, $cart_item_key ) {
-			if ( $cart_item[ 'data' ]->get_price() == 0 ) {
+		public function call_for_price_on_cart_page( $price, $cart_item, $cart_item_key ) {
+			if ( 0 === $cart_item[ 'data' ]->get_price() ) {
 				$price = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
 			}
 			return $price;
