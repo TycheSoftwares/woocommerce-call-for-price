@@ -29,6 +29,10 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @version 3.2.3
 		 */
 		public function __construct() {
+			if ( 'yes' === get_option( 'alg_wc_call_for_price_cart_enabled', 'no' ) ) {
+				add_filter( 'woocommerce_get_price_html', array( $this, 'call_for_price_on_product_page'), 10 , 3 ) ;
+				add_filter( 'woocommerce_cart_item_price', array( $this, 'call_for_price_on_cart_page'), 10 , 3 );
+			}
 			if ( 'yes' === get_option( 'alg_wc_call_for_price_enabled', 'yes' ) ) {
 				// Class properties.
 				$this->is_wc_below_3_0_0 = version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' );
@@ -95,6 +99,27 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					add_filter( 'woocommerce_show_variation_price', '__return_true', PHP_INT_MAX );
 				}
 			}
+		}
+
+		/**
+		 * 	Display call for price on the cart page if product price is 0 or empty (In price).
+		 */
+		public function call_for_price_on_product_page( $price, $product ) {
+			$product_price = $product->get_price();
+			if ( $product_price == 0 ) { 
+				$price = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
+			}
+			return $price;
+		}
+
+		/**
+		 * 	Display call for price on the cart page if product price is 0 or empty (In price).
+		 */
+		public function call_for_price_on_cart_page(  $price, $cart_item, $cart_item_key ) {
+			if ( $cart_item[ 'data' ]->get_price() == 0 ) {
+				$price = '<strong>' . __( 'Call for Price', 'woocommerce-call-for-price' ) . '</strong>';
+			}
+			return $price;
 		}
 
 		/**
