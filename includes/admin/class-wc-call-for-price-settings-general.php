@@ -140,7 +140,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 					'type'    => 'checkbox',
 				),
 				array(
-					'desc' => __( 'If product price is 0 or empty on the cart page it will display call for price.', 'woocommerce-call-for-price' ), 
+					'desc'     => __( 'If product price is 0 or empty on the cart page it will display call for price.', 'woocommerce-call-for-price' ),
 					'id'       => 'alg_wc_call_for_price_cart_enabled',
 					'default'  => 'no',
 					'type'     => 'checkbox',

@@ -119,7 +119,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		/**
 		 * Display call for price on the cart page if product price is 0 or empty (In price).
 		 *
-		 * @param string $cart_item Object of Cart items.
+		 * @param $cart_item Cart items.
 		 * @param string $price  Price.
 		 * @since 3.2.3
 		 */
