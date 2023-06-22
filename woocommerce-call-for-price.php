@@ -142,6 +142,18 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 				update_option( 'alg_wc_call_for_price_version', $this->version );
 			}
 			require_once 'includes/class-wc-call-for-price.php';
+			$cfp_plugin_url = plugins_url() . '/woocommerce-call-for-price';
+			// plugin deactivation.
+			require_once 'includes/class-tyche-plugin-deactivation.php';
+			new Tyche_Plugin_Deactivation(
+				array(
+					'plugin_name'       => 'Call for Price for WooCommerce',
+					'plugin_base'       => 'woocommerce-call-for-price/woocommerce-call-for-price.php',
+					'script_file'       => $cfp_plugin_url . '/includes/js/plugin-deactivation.js',
+					'plugin_short_name' => 'cfp_lite',
+					'version'           => $this->version,
+				)
+			);
 		}
 
 		/**

@@ -95,6 +95,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					add_filter( 'woocommerce_show_variation_price', '__return_true', PHP_INT_MAX );
 				}
 			}
+			add_action( 'admin_enqueue_scripts', array( $this, 'alg_call_for_price_setting_script' ) );
 		}
 
 		/**
@@ -106,6 +107,24 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 */
 		public function hide_main_variable_price_on_single_product_page( $price_html ) {
 			return ( is_product() ? '' : $price_html );
+		}
+
+		/**
+		 * Enqueue JS script for deactivate plugin.
+		 *
+		 * @version 3.6.0
+		 * @since   3.6.0
+		 */
+		public static function alg_call_for_price_setting_script() {
+			$plugin_url = plugins_url() . '/woocommerce-call-for-price';
+			wp_register_script(
+				'tyche',
+				$plugin_url . '/includes/js/tyche.js',
+				array( 'jquery' ),
+				'3.6.0',
+				true
+			);
+			wp_enqueue_script( 'tyche' );
 		}
 
 		/**
