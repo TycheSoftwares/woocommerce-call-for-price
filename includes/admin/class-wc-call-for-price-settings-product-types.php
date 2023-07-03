@@ -21,6 +21,12 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 	 * @since   1.0.0
 	 */
 	class Alg_WC_Call_For_Price_Settings_Product_Types {
+		/**
+		 * Product Types.
+		 *
+		 * @since 3.0.0
+		 */
+		public $product_types = '';
 
 		/**
 		 * Constructor.

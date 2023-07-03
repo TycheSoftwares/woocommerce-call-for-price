@@ -21,7 +21,19 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 	 * @since   1.0.0
 	 */
 	class Alg_WC_Call_For_Price_Settings_General {
+		/**
+		 * Id.
+		 *
+		 * @since 3.0.0
+		 */
+		public $id = '';
 
+		/**
+		 * Desc.
+		 *
+		 * @since 3.0.0
+		 */
+		public $desc = '';
 		/**
 		 * Constructor.
 		 *
