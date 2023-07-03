@@ -61,6 +61,14 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 		public $version = '3.5.0';
 
 		/**
+		 * Setting.
+		 *
+		 * @var $setting
+		 * @since 3.0.0
+		 */
+		public $settings = '';
+
+		/**
 		 * Instance Variable
 		 *
 		 * @var Alg_Woocommerce_Call_For_Price The single instance of the class
