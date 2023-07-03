@@ -29,7 +29,6 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since 3.0.0
 		 */
 		public $is_wc_below_3_0_0 = '';
-			
 		/**
 		 * Constructor.
 		 *
