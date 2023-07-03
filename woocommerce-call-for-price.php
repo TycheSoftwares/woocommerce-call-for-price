@@ -67,6 +67,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 		 * @since 3.0.0
 		 */
 		public $settings = '';
+
 		/**
 		 * Instance Variable
 		 *
