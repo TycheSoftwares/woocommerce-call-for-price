@@ -24,6 +24,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_Product_Types' ) ) :
 		/**
 		 * Product Types.
 		 *
+		 * @var $product_types
 		 * @since 3.0.0
 		 */
 		public $product_types = '';

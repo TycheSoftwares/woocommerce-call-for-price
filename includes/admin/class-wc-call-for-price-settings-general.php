@@ -24,6 +24,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 		/**
 		 * Id.
 		 *
+		 * @var $id
 		 * @since 3.0.0
 		 */
 		public $id = '';
@@ -31,6 +32,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 		/**
 		 * Desc.
 		 *
+		 * @var $desc
 		 * @since 3.0.0
 		 */
 		public $desc = '';
