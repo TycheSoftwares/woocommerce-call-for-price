@@ -57,6 +57,13 @@ if ( ! class_exists( 'Alg_WC_Settings_Call_For_Price' ) ) :
 						'type'    => 'checkbox',
 					),
 					array(
+						'title'   => __( 'Reset Usage Tracking', 'woocommerce-call-for-price' ),
+						'desc'    => __( 'This will reset your usage tracking settings, causing it to show the opt-in banner again and not sending any data.', 'woocommerce-call-for-price' ),
+						'id'      => $this->id . '_' . $current_section . '_reset_usage_tracking',
+						'default' => 'no',
+						'type'    => 'checkbox',
+					),
+					array(
 						'type' => 'sectionend',
 						'id'   => $this->id . '_' . $current_section . '_reset_options',
 					),
@@ -80,6 +87,11 @@ if ( ! class_exists( 'Alg_WC_Settings_Call_For_Price' ) ) :
 						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 					}
 				}
+			}
+			if ( 'yes' === get_option( $this->id . '_' . $current_section . '_reset_usage_tracking', '' ) ) {
+				delete_option( 'cfp_lite_allow_tracking' );
+				delete_option( $this->id . '_' . $current_section . '_reset_usage_tracking' );
+				Tyche_Plugin_Tracking::reset_tracker_setting( 'cfp_lite' );
 			}
 		}
 
