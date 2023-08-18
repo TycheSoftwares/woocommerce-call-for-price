@@ -148,7 +148,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 			} else {
 				$hide_main_variable_price = 'Do not hide';
 			}
-			$general_settings = array(
+			$general_settings                    = array(
 				'alg_wc_call_for_price_enabled'         => get_option( 'alg_wc_call_for_price_enabled' ),
 				'alg_call_for_price_enable_cfp_for_zero_price' => get_option( 'alg_call_for_price_enable_cfp_for_zero_price' ),
 				'alg_call_for_price_enable_stock_for_empty_price' => get_option( 'alg_call_for_price_enable_stock_for_empty_price' ),
@@ -170,7 +170,8 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				'alg_call_for_price_button_url'         => get_option( 'alg_call_for_price_button_url' ),
 				'alg_call_for_price_make_empty_price_per_user_roles' => get_option( 'alg_call_for_price_make_empty_price_per_user_roles' ),
 			);
-			return wp_json_encode( $general_settings );
+			$general_setting['general_settings'] = $general_settings;
+			return $general_setting;
 		}
 
 
@@ -180,7 +181,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		 * @since 3.2.9
 		 */
 		public static function cfp_get_simple_product_settings() {
-			$simple_products_settings = array(
+			$simple_products_settings                            = array(
 				'alg_wc_call_for_price_simple_enabled'     => get_option( 'alg_wc_call_for_price_simple_enabled' ),
 				'alg_wc_call_for_price_simple_single_enabled' => get_option( 'alg_wc_call_for_price_simple_single_enabled' ),
 				'alg_wc_call_for_price_text_simple_single' => get_option( 'alg_wc_call_for_price_text_simple_single' ),
@@ -189,7 +190,8 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				'alg_wc_call_for_price_simple_page_enabled' => get_option( 'alg_wc_call_for_price_simple_page_enabled' ),
 				'alg_wc_call_for_price_simple_archive_enabled' => get_option( 'alg_wc_call_for_price_simple_archive_enabled' ),
 			);
-			return wp_json_encode( $simple_products_settings );
+			$simple_products_setting['simple_products_settings'] = $simple_products_settings;
+			return $simple_products_setting;
 		}
 
 		/**
@@ -198,7 +200,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		 * @since 3.2.9
 		 */
 		public static function cfp_get_variable_product_settings() {
-			$variable_products_settings = array(
+			$variable_products_settings                              = array(
 				'alg_wc_call_for_price_variable_enabled' => get_option( 'alg_wc_call_for_price_variable_enabled' ),
 				'alg_wc_call_for_price_variable_single_enabled' => get_option( 'alg_wc_call_for_price_variable_single_enabled' ),
 				'alg_wc_call_for_price_text_variable_single' => get_option( 'alg_wc_call_for_price_text_variable_single' ),
@@ -209,7 +211,8 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				'alg_wc_call_for_price_text_variable_archive' => get_option( 'alg_wc_call_for_price_text_variable_archive' ),
 				'alg_wc_call_for_price_variable_variation_enabled' => get_option( 'alg_wc_call_for_price_variable_variation_enabled' ),
 			);
-			return wp_json_encode( $variable_products_settings );
+			$variable_products_setting['variable_products_settings'] = $variable_products_settings;
+			return $variable_products_setting;
 		}
 
 		/**
@@ -218,7 +221,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		 * @since 3.2.9
 		 */
 		public static function cfp_get_grouped_product_settings() {
-			$grouped_products_settings = array(
+			$grouped_products_settings                             = array(
 				'alg_wc_call_for_price_grouped_enabled' => get_option( 'alg_wc_call_for_price_grouped_enabled' ),
 				'alg_wc_call_for_price_grouped_single_enabled' => get_option( 'alg_wc_call_for_price_grouped_single_enabled' ),
 				'alg_wc_call_for_price_text_grouped_single' => get_option( 'alg_wc_call_for_price_text_grouped_single' ),
@@ -227,7 +230,8 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				'alg_wc_call_for_price_grouped_page_enabled' => get_option( 'alg_wc_call_for_price_grouped_page_enabled' ),
 				'alg_wc_call_for_price_grouped_archive_enabled' => get_option( 'alg_wc_call_for_price_grouped_archive_enabled' ),
 			);
-			return wp_json_encode( $grouped_products_settings );
+			$grouped_products_setting['grouped_products_settings'] = $grouped_products_settings;
+			return $grouped_products_setting;
 		}
 
 		/**
@@ -236,7 +240,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		 * @since 3.2.9
 		 */
 		public static function cfp_get_external_product_settings() {
-			$external_products_settings = array(
+			$external_products_settings                              = array(
 				'alg_wc_call_for_price_external_enabled' => get_option( 'alg_wc_call_for_price_external_enabled' ),
 				'alg_wc_call_for_price_external_single_enabled' => get_option( 'alg_wc_call_for_price_external_single_enabled' ),
 				'alg_wc_call_for_price_text_external_single' => get_option( 'alg_wc_call_for_price_text_external_single' ),
@@ -245,7 +249,8 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				'alg_wc_call_for_price_external_page_enabled' => get_option( 'alg_wc_call_for_price_external_page_enabled' ),
 				'alg_wc_call_for_price_external_archive_enabled' => get_option( 'alg_wc_call_for_price_external_archive_enabled' ),
 			);
-			return wp_json_encode( $external_products_settings );
+			$external_products_setting['external_products_settings'] = $external_products_settings;
+			return $external_products_setting;
 		}
 
 		/**
@@ -258,7 +263,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 			$cfp_enabled = 'yes';
 			$count = $wpdb->get_var( $wpdb->prepare( "SELECT count(post_id) FROM `" . $wpdb->prefix . "postmeta` WHERE meta_key = '%s' AND meta_value = '%s'", '_alg_wc_call_for_price_enabled', 'yes' ) ); // phpcs:ignore
 
-			return wp_json_encode( $count );
+			return $count;
 		}
 
 	}
