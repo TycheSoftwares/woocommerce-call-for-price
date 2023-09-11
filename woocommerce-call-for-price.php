@@ -160,6 +160,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 					'script_file'       => $cfp_plugin_url . '/includes/js/plugin-deactivation.js',
 					'plugin_short_name' => 'cfp_lite',
 					'version'           => $this->version,
+					'plugin_locale'     => 'woocommerce-call-for-price',
 				)
 			);
 		}
