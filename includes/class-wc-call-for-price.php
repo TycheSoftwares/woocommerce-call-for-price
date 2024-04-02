@@ -22,13 +22,6 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 	 * @since   1.0.0
 	 */
 	class Alg_WC_Call_For_Price {
-		/**
-		 * Woocommerce version.
-		 *
-		 * @var $is_wc_below_3_0_0
-		 * @since 3.0.0
-		 */
-		public $is_wc_below_3_0_0 = '';
 
 		/**
 		 * Constructor.
@@ -36,6 +29,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @version 3.2.3
 		 */
 		public function __construct() {
+
 			if ( 'yes' === get_option( 'alg_wc_call_for_price_enabled', 'yes' ) ) {
 				// Class properties.
 				$this->is_wc_below_3_0_0 = version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' );
@@ -102,7 +96,6 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					add_filter( 'woocommerce_show_variation_price', '__return_true', PHP_INT_MAX );
 				}
 			}
-			add_action( 'admin_enqueue_scripts', array( $this, 'alg_call_for_price_setting_script' ) );
 		}
 
 		/**
@@ -114,24 +107,6 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 */
 		public function hide_main_variable_price_on_single_product_page( $price_html ) {
 			return ( is_product() ? '' : $price_html );
-		}
-
-		/**
-		 * Enqueue JS script for deactivate plugin.
-		 *
-		 * @version 3.6.0
-		 * @since   3.6.0
-		 */
-		public static function alg_call_for_price_setting_script() {
-			$plugin_url = plugins_url() . '/woocommerce-call-for-price';
-			wp_register_script(
-				'tyche',
-				$plugin_url . '/includes/js/tyche.js',
-				array( 'jquery' ),
-				'3.6.0',
-				true
-			);
-			wp_enqueue_script( 'tyche' );
 		}
 
 		/**
@@ -292,7 +267,6 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 				}
 			}
 			return $short_desc;
-
 		}
 
 		/**
@@ -398,15 +372,25 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.2.0
 		 */
 		public function make_empty_price_per_taxonomy( $price, $_product ) {
+
+			$exclude_products = get_option( 'alg_call_for_price_exclude_product', array() );
+			if ( in_array( $_product->id, $exclude_products ) ) {
+				return $price;
+			}
 			foreach ( array( 'product_cat', 'product_tag' ) as $taxonomy ) {
 				$term_ids = get_option( 'alg_call_for_price_make_empty_price_' . $taxonomy, '' );
 				if ( ! empty( $term_ids ) ) {
-					$product_id    = ( $this->is_wc_below_3_0_0 ? $_product->id : ( $_product->is_type( 'variation' ) ? $_product->get_parent_id() : $_product->get_id() ) );
-					$product_terms = get_the_terms( $product_id, $taxonomy );
+					$product_id         = ( $this->is_wc_below_3_0_0 ? $_product->id : ( $_product->is_type( 'variation' ) ? $_product->get_parent_id() : $_product->get_id() ) );
+					$product_terms      = get_the_terms( $product_id, $taxonomy );
+					$exclude_categories = get_option( 'alg_call_for_price_exclude_product_cat', array() );
 					if ( ! empty( $product_terms ) ) {
 						foreach ( $product_terms as $product_term ) {
-							if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
-								return '';
+							if ( in_array( $product_term->term_id, $exclude_categories ) ) {
+									return $price;
+							} else {
+								if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
+									return '';
+								}
 							}
 						}
 					}
@@ -441,6 +425,17 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.1.0
 		 */
 		public function get_variation_prices_hash( $price_hash, $_product, $display ) {
+			$exclude_categories = get_option( 'alg_call_for_price_exclude_product_cat', array() );
+			$exclude_products   = get_option( 'alg_call_for_price_exclude_product', array() );
+			$categories         = get_the_terms( $_product->id, 'product_cat' );
+			foreach ( $categories as $cat ) {
+				if ( in_array( $cat->term_id, $exclude_categories ) ) {
+					return $price_hash;
+				}
+			}
+			if ( in_array( $_product->id, $exclude_products ) ) {
+				return '';
+			}
 			$price_hash['alg_call_for_price'] = array(
 				'force_all'               => get_option( 'alg_call_for_price_make_all_empty', 'no' ),
 				'force_out_of_stock'      => apply_filters( 'alg_call_for_price', 'no', 'out_of_stock' ),
@@ -487,6 +482,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @return The price as per different conditons.
 		 */
 		public function fetch_product_price_if_zero_or_empty( $price, $_product ) {
+
 			$is_cfp_for_zero_price_enabled = $this->alg_wc_cfp_setting_for_zero_priced_product();
 			if ( 'no' === $is_cfp_for_zero_price_enabled ) {
 				if ( '0' === $price ) {
@@ -517,7 +513,12 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.0.3
 		 */
 		public function make_empty_price( $price, $_product ) {
-			return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
+			$exclude_products = get_option( 'alg_call_for_price_exclude_product', array() );
+			if ( in_array( $_product->id, $exclude_products ) ) {
+				return $price;
+			} else {
+				return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
+			}
 		}
 
 		/**
@@ -620,6 +621,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 						$product_type = ( $_product->is_type( 'external' ) ) ? 'external' : 'simple';
 				}
 			} else {
+
 				$_product_id = ( $_product->is_type( 'variation' ) ) ? $_product->get_parent_id() : $_product->get_id();
 				if ( $_product->is_type( 'variation' ) ) {
 					$current_filter = 'woocommerce_variation_empty_price_html';
@@ -638,6 +640,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 			if ( 'per_product' === $product_type ) {
 				$view = 'all_views';
 			} else {
+
 				$view = 'single'; // default.
 				if ( 'woocommerce_variation_empty_price_html' === $current_filter ) {
 					$view = 'variation';
@@ -658,6 +661,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					return $price;
 				}
 			}
+
 			if ( 'single' === $view || 'variation' === $view ) {
 				// Label for product page.
 				$label = get_option(
