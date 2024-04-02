@@ -27,7 +27,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		public function __construct() {
 
 			// Include JS script for the notice.
-			add_filter( 'ts_tracker_data', array( __CLASS__, 'cfp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
+			add_filter( 'cfp_lite_ts_tracker_data', array( __CLASS__, 'cfp_lite_ts_add_plugin_tracking_data' ), 10, 1 );
 			add_action( 'admin_footer', array( __CLASS__, 'ts_admin_notices_scripts' ) );
 			// Send Tracker Data.
 			add_action( 'cfp_lite_init_tracker_completed', array( __CLASS__, 'init_tracker_completed' ), 10, 2 );
@@ -64,6 +64,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 		 * @since 1.3.0
 		 */
 		public static function ts_admin_notices_scripts() {
+			$nonce            = wp_create_nonce( 'tracking_notice' );
 			$plugin_url       = plugins_url() . '/woocommerce-call-for-price';
 			$numbers_instance = alg_woocommerce_call_for_price();
 			wp_enqueue_script(
@@ -80,6 +81,7 @@ if ( ! class_exists( 'Cfp_Lite_Data_Tracking' ) ) :
 				array(
 					'ts_prefix_of_plugin' => 'cfp_lite',
 					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
+					'tracking_notice'     => $nonce,
 				)
 			);
 		}
