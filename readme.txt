@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, call for price, request a quote
 Requires at least: 4.4
-Tested up to: 6.2.2
+Tested up to: 6.5
 Stable tag: trunk
 Requires PHP: 7.3
 License: GNU General Public License v3.0
@@ -105,6 +105,10 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 1. Empty price replaced by "Call for Price".
 
 == Changelog ==
+
+= 3.6.1 - 02/04/2024 = 
+* Tweak :- Update compatibility with WordPress 6.5.
+* Tweak :- Update compatibility with WooCommerce 8.7.
 
 = 3.6.0 - 04/07/2023 = 
 * Enhancement - Added deactivation survey in the plugin.
