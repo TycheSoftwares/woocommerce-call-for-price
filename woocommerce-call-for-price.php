@@ -155,29 +155,34 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 			}
 			require_once 'includes/class-wc-call-for-price.php';
 			$cfp_plugin_url = plugins_url() . '/woocommerce-call-for-price';
+
 			// plugin deactivation.
-			require_once 'includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php';
-			new Tyche_Plugin_Deactivation(
-				array(
-					'plugin_name'       => 'Call for Price for WooCommerce',
-					'plugin_base'       => 'woocommerce-call-for-price/woocommerce-call-for-price.php',
-					'script_file'       => $cfp_plugin_url . '/includes/js/plugin-deactivation.js',
-					'plugin_short_name' => 'cfp_lite',
-					'version'           => $this->version,
-					'plugin_locale'     => 'woocommerce-call-for-price',
-				)
-			);
-			require_once 'includes/class-cfp-lite-data-tracking.php';
-			require_once 'includes/component/plugin-tracking/class-tyche-plugin-tracking.php';
-			new Tyche_Plugin_Tracking(
-				array(
-					'plugin_name'       => 'Call for Price for WooCommerce',
-					'plugin_locale'     => 'woocommerce-call-for-price',
-					'plugin_short_name' => 'cfp_lite',
-					'version'           => $this->version,
-					'blog_link'         => 'https://www.tychesoftwares.com/docs/woocommerce-call-for-price/call-for-price-usage-tracking/',
-				)
-			);
+			if ( is_admin() ) {
+				if ( strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=deactivate' ) !== false || ( strpos( $_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false && isset( $_POST['action'] ) && $_POST['action'] === 'tyche_plugin_deactivation_submit_action' ) ) { //phpcs:ignore
+					require_once 'includes/component/plugin-deactivation/class-tyche-plugin-deactivation.php';
+					new Tyche_Plugin_Deactivation(
+						array(
+							'plugin_name'       => 'Call for Price for WooCommerce',
+							'plugin_base'       => 'woocommerce-call-for-price/woocommerce-call-for-price.php',
+							'script_file'       => $cfp_plugin_url . '/includes/js/plugin-deactivation.js',
+							'plugin_short_name' => 'cfp_lite',
+							'version'           => $this->version,
+							'plugin_locale'     => 'woocommerce-call-for-price',
+						)
+					);
+				}
+				require_once 'includes/class-cfp-lite-data-tracking.php';
+				require_once 'includes/component/plugin-tracking/class-tyche-plugin-tracking.php';
+				new Tyche_Plugin_Tracking(
+					array(
+						'plugin_name'       => 'Call for Price for WooCommerce',
+						'plugin_locale'     => 'woocommerce-call-for-price',
+						'plugin_short_name' => 'cfp_lite',
+						'version'           => $this->version,
+						'blog_link'         => 'https://www.tychesoftwares.com/docs/woocommerce-call-for-price/call-for-price-usage-tracking/',
+					)
+				);
+			}
 		}
 
 		/**
