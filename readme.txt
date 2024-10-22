@@ -115,7 +115,7 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 == Changelog ==
 
 = 3.8.0 - 22/10/2024 = 
-
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
 
 = 3.7.0 - 02/04/2024 = 
 * Tweak :- Update compatibility with WordPress 6.5.
