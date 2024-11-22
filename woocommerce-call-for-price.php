@@ -103,7 +103,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 		public function __construct() {
 
 			// Set up localisation.
-			load_plugin_textdomain( 'woocommerce-call-for-price', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+			add_action( 'init', array( $this, 'cfp_load_text_domain' ) );
 
 			// Include required files.
 			$this->includes();
@@ -114,6 +114,13 @@ if ( ! class_exists( 'Alg_Woocommerce_Call_For_Price' ) ) :
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 				add_action( 'before_woocommerce_init', array( &$this, 'cfp_lite_custom_order_tables_compatibility' ), 999 );
 			}
+		}
+
+		/**
+		 * Added plugin text domain.
+		 */
+		public function cfp_load_text_domain() {
+			load_plugin_textdomain( 'woocommerce-call-for-price', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 		}
 
 		/**
