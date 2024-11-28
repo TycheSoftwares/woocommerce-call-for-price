@@ -21,21 +21,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 	 * @since   1.0.0
 	 */
 	class Alg_WC_Call_For_Price_Settings_General {
-		/**
-		 * Id.
-		 *
-		 * @var $id
-		 * @since 3.0.0
-		 */
-		public $id = '';
 
-		/**
-		 * Desc.
-		 *
-		 * @var $desc
-		 * @since 3.0.0
-		 */
-		public $desc = '';
 		/**
 		 * Constructor.
 		 *
@@ -83,6 +69,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 					'hide_empty' => false,
 				);
 			}
+
 			global $wp_version;
 			if ( version_compare( $wp_version, '4.5.0', '>=' ) ) {
 				$_terms = get_terms( $args );
@@ -100,6 +87,19 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 			return $_terms_options;
 		}
 
+		/**
+		 * Get product
+		 */
+		public function get_product() {
+			$_products = wc_get_products( array( 'posts_per_page' => -1 ) );
+
+			if ( ! empty( $_products ) && ! is_wp_error( $_products ) ) {
+				foreach ( $_products as $_product ) {
+					$_product_options[ $_product->id ] = $_product->name;
+				}
+			}
+			return $_product_options;
+		}
 		/**
 		 * Get_settings.
 		 *
@@ -309,6 +309,36 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 				),
 			);
 
+			$exclude_product = array(
+				array(
+					'title' => __( 'Exclude Product/Categories', 'woocommerce-call-for-price' ),
+					'type'  => 'title',
+					'id'    => 'alg_wc_call_for_price_exclude_options',
+				),
+				array(
+					'title'   => __( 'Select Product(s)', 'woocommerce-call-for-price' ),
+					'desc'    => __( 'Exclude product', 'woocommerce-call-for-price' ),
+					'id'      => 'alg_call_for_price_exclude_product',
+					'default' => '',
+					'type'    => 'multiselect',
+					'class'   => 'chosen_select',
+					'options' => $this->get_product( '_product' ),
+				),
+				array(
+					'title'   => __( 'Select Categories(s)', 'woocommerce-call-for-price' ),
+					'desc'    => __( 'Exclude categories', 'woocommerce-call-for-price' ),
+					'id'      => 'alg_call_for_price_exclude_product_cat',
+					'default' => '',
+					'type'    => 'multiselect',
+					'class'   => 'chosen_select',
+					'options' => $this->get_terms( 'product_cat' ),
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'alg_call_for_price_exclude_options',
+				),
+			);
+
 			$advanced_settings = array(
 				array(
 					'title' => __( 'Advanced Options', 'woocommerce-call-for-price' ),
@@ -349,9 +379,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 				),
 			);
 
-			return array_merge( $plugin_settings, $general_settings, $button_settings, $force_settings, $advanced_settings );
+			return array_merge( $plugin_settings, $general_settings, $button_settings, $force_settings, $exclude_product, $advanced_settings );
 		}
-
 	}
 
 endif;
