@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Plugin Name: Call for Price for WooCommerce
  * Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/
@@ -20,10 +20,11 @@
  * @package CallForPrice
  */
 
-// Exit if accessed directly.
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
+
 use Automattic\WooCommerce\Utilities\OrderUtil;
 
 // Check if WooCommerce is active.
@@ -268,7 +269,7 @@ if ( ! function_exists( 'alg_woocommerce_call_for_price' ) ) {
 	 * @return  Alg_Woocommerce_Call_For_Price
 	 * @version 3.0.0
 	 */
-	function alg_woocommerce_call_for_price() {
+	function alg_woocommerce_call_for_price() { // phpcs:ignore
 		return Alg_Woocommerce_Call_For_Price::instance();
 	}
 }
