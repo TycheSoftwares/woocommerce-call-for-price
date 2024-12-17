@@ -1,4 +1,4 @@
-*** Currency per Product for WooCommerce ***
+*** Call for Price for WooCommerce ***
 2024-11-22 - version 3.9.0
 * Fix - Translation loading was triggered too early, causing errors when changing the site language in WordPress 6.7.
 * Tweak - Removed the call to our tracking server to fetch the deactivation reasons and added them in the plugin itself.
