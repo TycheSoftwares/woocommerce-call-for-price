@@ -62,7 +62,8 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 					$this->hook_price_filters( 'make_empty_price' );
 				}
 				// Out of stock products.
-				if ( 'yes' === apply_filters( 'alg_call_for_price', 'no', 'out_of_stock' ) ) {
+
+				if ( 'yes' === get_option( 'alg_call_for_price_make_out_of_stock_empty_price', 'no' ) ) {
 					$this->hook_price_filters( 'make_empty_price_out_of_stock' );
 				}
 				// "Call for Price" per product taxonomy.

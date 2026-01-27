@@ -36,7 +36,7 @@ Supported views:
 You can also optionally force "Call for Price" for:
 
 * All your shop's products
-* "Out of stock" products (Pro version only)
+* "Out of stock" products
 * Per product taxonomy (categories and/or tags)
 * By product's price
 
