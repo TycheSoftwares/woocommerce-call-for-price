@@ -427,7 +427,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price' ) ) :
 		 * @since   3.2.0
 		 */
 		public function make_empty_price_out_of_stock( $price, $_product ) {
-			if ( ! $_product->is_in_stock() ) {
+			if ( ! $_product->is_in_stock() || $_product->is_on_backorder( 1 ) ) {
 				return $this->fetch_product_price_if_zero_or_empty( $price, $_product );
 			} else {
 				return $price;
