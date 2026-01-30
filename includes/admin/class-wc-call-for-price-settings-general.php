@@ -234,7 +234,7 @@ if ( ! class_exists( 'Alg_WC_Call_For_Price_Settings_General' ) ) :
 				array(
 					'title'             => __( '"Out of stock" products', 'woocommerce-call-for-price' ),
 					'desc'              => __( 'Enable', 'woocommerce-call-for-price' ),
-					'desc_tip'          => __( 'Makes "Call for Price" for all products that can not be purchased (not "in stock" or "on backorder" stock statuses).', 'woocommerce-call-for-price' ),
+					'desc_tip'          => __( 'Makes "Call for Price" for all products that can not be purchased ( "Out of stock" and "on backorder" stock statuses ).', 'woocommerce-call-for-price' ),
 					'id'                => 'alg_call_for_price_make_out_of_stock_empty_price',
 					'default'           => 'no',
 					'type'              => 'checkbox',
