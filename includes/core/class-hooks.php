@@ -475,10 +475,8 @@ class Hooks {
 	 * @return void
 	 */
 	public function variable_save_fields( $variation_id, $loop ) {
-		$checkbox = ! empty( $_POST['cfp_enable_for_variation'][ $loop ] ) ? 'yes' : 'no';
-		$text     = isset( $_POST['cfp_custom_text_for_variation'][ $loop ] )
-			? sanitize_text_field( wp_unslash( $_POST['cfp_custom_text_for_variation'][ $loop ] ) )
-			: '';
+		$checkbox = ! empty( $_POST['cfp_enable_for_variation'][ $loop ] ) ? 'yes' : 'no'; // phpcs:ignore WordPress.Security.NonceVerification
+		$text     = isset( $_POST['cfp_custom_text_for_variation'][ $loop ] ) ? sanitize_text_field( wp_unslash( $_POST['cfp_custom_text_for_variation'][ $loop ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 		update_post_meta( $variation_id, 'variation_text', $text );
 		update_post_meta( $variation_id, 'variation_check', $checkbox );
