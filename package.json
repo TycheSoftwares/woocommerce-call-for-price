@@ -1,0 +1,24 @@
+{
+  "name": "woocommerce-call-for-price-lite",
+  "version": "1.0.0",
+  "description": "React settings SPA and per-product metabox for Call for Price Pro",
+  "private": true,
+  "scripts": {
+    "build": "wp-scripts build src/index.js src/product.js",
+    "start": "wp-scripts start src/index.js src/product.js",
+    "lint:js": "wp-scripts lint-js src/",
+    "lint:css": "wp-scripts lint-style src/"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.2.0",
+    "@wordpress/components": "^28.2.0",
+    "@wordpress/element": "^6.2.0",
+    "@wordpress/i18n": "^5.2.0",
+    "react-hook-form": "^7.51.0",
+    "react-router-dom": "^6.23.0",
+    "react-select": "^5.8.0"
+  }
+}
