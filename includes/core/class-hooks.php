@@ -341,10 +341,10 @@ class Hooks {
 
 			if ( ! empty( $product_terms ) ) {
 				foreach ( $product_terms as $product_term ) {
-					if ( in_array( $product_term->term_id, $exclude_cats, true ) ) {
+					if ( in_array( $product_term->term_id, $exclude_cats ) ) {
 						return $price;
 					}
-					if ( in_array( (string) $product_term->term_id, $term_ids, true ) ) {
+					if ( in_array( $product_term->term_id, $term_ids ) ) {
 						return '';
 					}
 				}

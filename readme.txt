@@ -2,7 +2,7 @@
 Contributors: tychesoftwares
 Tags: woocommerce, call for price, request a quote
 Requires at least: 4.4
-Tested up to: 6.9.4
+Tested up to: 7.0
 Stable tag: 4.3.0
 Requires PHP: 7.4
 License: GNU General Public License v3.0

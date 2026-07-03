@@ -1,6 +1,6 @@
 {
   "name": "woocommerce-call-for-price-lite",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "description": "React settings SPA and per-product metabox for Call for Price Pro",
   "private": true,
   "scripts": {

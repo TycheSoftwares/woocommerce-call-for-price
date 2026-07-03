@@ -46,8 +46,7 @@ class Files {
 		self::require( 'includes/api/class-api-product.php' );
 		self::require( 'includes/api/class-api.php' );
 
-		// Frontend / Hooks layer.
-		self::require( 'includes/core/class-frontend.php' );
+		// Hooks layer.
 		self::require( 'includes/core/class-hooks.php' );
 
 		// Admin-only files.
