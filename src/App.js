@@ -94,7 +94,7 @@ export default function App() {
 			<CardHeader>
 				<VStack spacing={ 1 }>
 					<Heading level={ 4 }>
-						{ __( 'Call for Price Pro', 'woocommerce-call-for-price' ) }
+						{ __( 'Call for Price', 'woocommerce-call-for-price' ) }
 					</Heading>
 					<Text>
 						{ __( 'Configure call for price settings for your WooCommerce products', 'woocommerce-call-for-price' ) }
