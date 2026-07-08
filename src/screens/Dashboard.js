@@ -10,6 +10,7 @@
  */
 import { useState, useEffect } from '@wordpress/element';
 import {
+	Spinner,
 	__experimentalVStack  as VStack,
 	__experimentalHeading as Heading,
 	__experimentalText    as Text,
@@ -17,7 +18,6 @@ import {
 import { __ } from '@wordpress/i18n';
 import { useSettings }       from '../context/SettingsContext';
 import { getDashboardStats } from '../api';
-import MigrationNotice       from '../components/MigrationNotice';
 
 // ── SVG helpers ───────────────────────────────────────────────────────────────
 
@@ -147,11 +147,14 @@ function QuickLinkCard( { Icon, title, description, iconBg, iconColor, href, isE
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 export default function Dashboard() {
-	const { settings }      = useSettings();
-	const [ dash, setDash ] = useState( null );
+	const { settings }             = useSettings();
+	const [ dash,        setDash        ] = useState( null );
+	const [ dashLoading, setDashLoading ] = useState( true );
 
 	useEffect( () => {
-		getDashboardStats().then( setDash );
+		getDashboardStats()
+			.then( setDash )
+			.finally( () => setDashLoading( false ) );
 	}, [] );
 
 	const general         = settings?.general ?? {};
@@ -170,11 +173,16 @@ export default function Dashboard() {
 
 	const accent = 'var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1))';
 
+	if ( dashLoading ) {
+		return (
+			<div style={ { padding: '60px', textAlign: 'center' } }>
+				<Spinner style={ { width: 28, height: 28 } } />
+			</div>
+		);
+	}
+
 	return (
 		<VStack spacing={ 4 }>
-
-			{ /* ── Migration notice (dismissible, hides when none) ── */ }
-			<MigrationNotice />
 
 			{ /* ── Two‑column: Getting Started | Plugin Summary ── */ }
 			<div style={ { display: 'flex', gap: '20px', alignItems: 'stretch', flexWrap: 'wrap' } }>
@@ -292,9 +300,6 @@ export default function Dashboard() {
 					<a href="#/general" style={ { color: accent } }>{ __( 'General tab', 'woocommerce-call-for-price' ) }</a>
 					{ ' ' }{ __( 'to configure global plugin settings. Set per-product-type labels under', 'woocommerce-call-for-price' ) }{ ' ' }
 					<a href="#/product-types" style={ { color: accent } }>{ __( 'Product Types', 'woocommerce-call-for-price' ) }</a>.
-					{ ' ' }{ __( 'Enable', 'woocommerce-call-for-price' ) }{ ' ' }
-					<a href="#/per-product" style={ { color: accent } }>{ __( 'Per Product', 'woocommerce-call-for-price' ) }</a>
-					{ ' ' }{ __( 'to override settings on individual products.', 'woocommerce-call-for-price' ) }
 				</span>
 			</div>
 
