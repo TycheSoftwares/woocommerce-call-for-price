@@ -187,45 +187,6 @@ export default function Dashboard() {
 			{ /* ── Two‑column: Getting Started | Plugin Summary ── */ }
 			<div style={ { display: 'flex', gap: '20px', alignItems: 'stretch', flexWrap: 'wrap' } }>
 
-				{ /* Getting Started — hidden when all steps complete */ }
-				{ ! allDone && (
-					<div style={ {
-						flex        : '1 1 380px',
-						background  : '#fff',
-						border      : '1px solid #e0e0e0',
-						borderRadius: '8px',
-						padding     : '24px',
-					} }>
-						<span style={ { fontWeight: 700, fontSize: '16px', color: '#1d2327', display: 'block', marginBottom: '12px' } }>
-							{ __( 'Getting Started', 'woocommerce-call-for-price' ) }
-						</span>
-
-						{ /* Progress label row */ }
-						<div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' } }>
-							<span style={ { fontSize: '13px', color: '#646970' } }>{ doneCount } { __( 'of', 'woocommerce-call-for-price' ) } { totalCount } { __( 'completed', 'woocommerce-call-for-price' ) }</span>
-							<span style={ { fontSize: '13px', fontWeight: 600, color: '#1d2327' } }>{ percent }%</span>
-						</div>
-
-						{ /* Progress bar */ }
-						<div style={ { height: '8px', background: '#e0e0e0', borderRadius: '4px', overflow: 'hidden', marginBottom: '16px' } }>
-							<div style={ {
-								height    : '100%',
-								width     : `${ percent }%`,
-								background: accent,
-								borderRadius: '4px',
-								transition: 'width 0.4s ease',
-							} } />
-						</div>
-
-						{ /* Checklist */ }
-						<div>
-							{ checklistItems.map( ( item, i ) => (
-								<ChecklistItem key={ i } done={ item.done } label={ item.label } />
-							) ) }
-						</div>
-					</div>
-				) }
-
 				{ /* Plugin Summary — always visible, shows success notice when all done */ }
 				<div style={ {
 					flex        : '1 1 260px',
@@ -254,21 +215,6 @@ export default function Dashboard() {
 							iconColor="#2271b1"
 						/>
 					</div>
-
-					{ /* Success notice when all steps are complete */ }
-					{ allDone && (
-						<div className="cfp-pro-configure-success-border" style={ {
-							marginTop: '16px',
-							background: '#f0f6fc',
-							borderRadius: '6px',
-							padding: '12px 16px',
-							borderLeft: `4px solid ${ accent }`,
-						} }>
-							<Text className="cfp-pro-configure-success-msg" style={ { fontWeight: 600, margin: 0, color: accent } }>
-								🎉 { __( 'All steps complete! Your plugin is fully configured.', 'woocommerce-call-for-price' ) }
-							</Text>
-						</div>
-					) }
 				</div>
 			</div>
 
@@ -295,7 +241,7 @@ export default function Dashboard() {
 					<IconBulb />
 				</div>
 				<span style={ { fontSize: '13px', color: '#1d2327', lineHeight: 1.7 } }>
-					<strong style={ { color: accent } }>{ __( 'Quick Tip:', 'woocommerce-call-for-price' ) }</strong>
+					<strong style={ { color: accent } }>{ __( 'Quick Tip: ', 'woocommerce-call-for-price' ) }</strong>
 					{ __( 'Visit the', 'woocommerce-call-for-price' ) }{ ' ' }
 					<a href="#/general" style={ { color: accent } }>{ __( 'General tab', 'woocommerce-call-for-price' ) }</a>
 					{ ' ' }{ __( 'to configure global plugin settings. Set per-product-type labels under', 'woocommerce-call-for-price' ) }{ ' ' }
@@ -328,7 +274,7 @@ export default function Dashboard() {
 					description={ __( 'Need help? Contact our support team for assistance', 'woocommerce-call-for-price' ) }
 					iconBg="#f0fdf4"
 					iconColor="#1a8d34"
-					href="https://support.tychesoftwares.com/help/2285384554/"
+					href="https://wordpress.org/support/plugin/woocommerce-call-for-price/"
 					isExternal
 				/>
 			</div>
