@@ -143,7 +143,7 @@ export default function App() {
 			<CardFooter justify="center">
 				<VStack style={ { padding: '20px 0' } }>
 					<HStack justify="center" style={ { marginBottom: '12px' } }>
-						<ExternalLink href="https://support.tychesoftwares.com/help/2285384554/">
+						<ExternalLink href="https://wordpress.org/support/plugin/woocommerce-call-for-price/">
 							{ __( 'Need support?', 'woocommerce-call-for-price' ) }
 						</ExternalLink>
 						<Text style={ { fontWeight: 'bold' } }>
@@ -152,7 +152,7 @@ export default function App() {
 					</HStack>
 					<HStack justify="center">
 						<Text>{ __( 'If this plugin helped you,', 'woocommerce-call-for-price' ) }</Text>
-						<ExternalLink href="https://www.tychesoftwares.com/submit-review/">
+						<ExternalLink href="https://wordpress.org/support/plugin/woocommerce-call-for-price/reviews/#new-post">
 							{ __( 'please rate it', 'woocommerce-call-for-price' ) }
 						</ExternalLink>
 						<Text style={ { fontSize: '17px', color: '#FFBA00' } }>★★★★★</Text>
