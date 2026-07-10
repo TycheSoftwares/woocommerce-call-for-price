@@ -235,7 +235,7 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 == Changelog ==
 
 = 4.4.0 - 14/07/2026 =
-* New – React-based admin interface for General, Product Types, Per Product, and License pages.
+* New – React-based admin interface for General and Product Types pages.
 * Dev – Introduced a REST API layer (cfp-pro/v1) for plugin settings, product meta, migration, and license operations.
 * Dev – Consolidated settings storage from individual alg_wc_call_for_price_* options into cfp_pro_settings JSON object.
 * Update – Compatibility with WordPress 7.0.
