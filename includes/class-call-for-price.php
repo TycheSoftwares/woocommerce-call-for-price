@@ -34,7 +34,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public string $version = '4.3.0';
+	public string $version = '4.4.0';
 
 	/**
 	 * Singleton instance.
