@@ -239,7 +239,7 @@ Yes, in "WooCommerce > Settings > Call for Price" you can set if you want text t
 * Dev – Introduced a REST API layer (cfp-pro/v1) for plugin settings, product meta, migration, and license operations.
 * Dev – Consolidated settings storage from individual alg_wc_call_for_price_* options into cfp_pro_settings JSON object.
 * Update – Compatibility with WordPress 7.0.
-* Update – Compatibility with WooCommerce 10.9.1.
+* Update – Compatibility with WooCommerce 10.9.4.
 
 = 4.3.0 - 23/04/2026 =
 * Fix - Security vulnerability where unsanitized textarea input could lead to XSS on the frontend.
