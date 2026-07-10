@@ -1,7 +1,7 @@
 *** Call for Price for WooCommerce ***
 
 2026-07-14 - version 4.4.0
-* New – React-based admin interface for General, Product Types, Per Product, and License pages.
+* New – React-based admin interface for General and Product Types pages.
 * Dev – Introduced a REST API layer (cfp-pro/v1) for plugin settings, product meta, migration, and license operations.
 * Dev – Consolidated settings storage from individual alg_wc_call_for_price_* options into cfp_pro_settings JSON object.
 * Update – Compatibility with WordPress 7.0.
